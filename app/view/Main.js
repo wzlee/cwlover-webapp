@@ -10,8 +10,9 @@ Ext.define('cwlover.view.Main', {
 
         items: [
             {
+                xtype: 'list',
                 title: '宠物秀场',
-                iconCls: 'favorite',
+                iconCls: 'favorites',
 
                 styleHtmlContent: true,
                 scrollable: true,
@@ -22,15 +23,29 @@ Ext.define('cwlover.view.Main', {
                     title: '宠物秀场'
                 },
 
-                html: [
-                    "You've just generated a new Sencha Touch 2 project. What you're looking at right now is the ",
-                    "contents of <a target='_blank' href=\"app/view/Main.js\">app/view/Main.js</a> - edit that file ",
-                    "and refresh to change what's rendered here."
-                ].join("")
+                itemTpl: '{title}',
+
+                store: {
+
+                    fields: ['title', 'url'],
+
+                    data: [
+
+                        {title: 'Ext Scheduler 2.0', url: 'ext-scheduler-2-0-upgrading-to-ext-js-4'},
+
+                        {title: 'Previewing Sencha Touch 2', url: 'sencha-touch-2-what-to-expect'},
+
+                        {title: 'Sencha Con 2011', url: 'senchacon-2011-now-packed-with-more-goodness'},
+
+                        {title: 'Documentation in Ext JS 4', url: 'new-ext-js-4-documentation-center'}
+
+                    ]
+
+                }
             },
             {
                 title: '宠物商城',
-                iconCls: 'buy',
+                iconCls: 'bookmarks',
 
                 styleHtmlContent: true,
                 scrollable: true,
@@ -64,7 +79,7 @@ Ext.define('cwlover.view.Main', {
             },
             {
                 title: '我的宠物',
-                iconCls: 'user',
+                iconCls: 'settings',
 
                 items: [
                     {
