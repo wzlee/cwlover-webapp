@@ -1,4 +1,4 @@
-Ext.define('AddressBook.model.Pet', {
+Ext.define('cwlover.model.Pet', {
     extend: 'Ext.data.Model',
 
     config: {
@@ -10,7 +10,6 @@ Ext.define('AddressBook.model.Pet', {
             'variety',
             'age',
             'sex',
-            'weight',
             'city',
             'state',
             'country'

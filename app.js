@@ -23,12 +23,16 @@ Ext.application({
     name: 'cwlover',
 
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'Ext.TitleBar',
+        'Ext.Video',
+        'Ext.Map',
+        'Ext.data.proxy.JsonP'
     ],
 
-    views: [
-        'Main'
-    ],
+    models: ['Pet','Variety'],
+    stores: ['Variety'],
+    views: ['Main','VarietyList'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
@@ -54,6 +58,7 @@ Ext.application({
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('cwlover.view.Main'));
+     
     },
 
     onUpdated: function() {

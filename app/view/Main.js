@@ -2,8 +2,7 @@ Ext.define('cwlover.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
     requires: [
-        'Ext.TitleBar',
-        'Ext.Video'
+        'Ext.Map'
     ],
     config: {
         tabBarPosition: 'bottom',
@@ -11,37 +10,21 @@ Ext.define('cwlover.view.Main', {
         items: [
             {
                 xtype: 'list',
-                title: '宠物秀场',
+                title: '品种大全',
                 iconCls: 'favorites',
 
                 styleHtmlContent: true,
                 scrollable: true,
 
-                items: {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: '宠物秀场'
-                },
-
-                itemTpl: '{title}',
-
-                store: {
-
-                    fields: ['title', 'url'],
-
-                    data: [
-
-                        {title: 'Ext Scheduler 2.0', url: 'ext-scheduler-2-0-upgrading-to-ext-js-4'},
-
-                        {title: 'Previewing Sencha Touch 2', url: 'sencha-touch-2-what-to-expect'},
-
-                        {title: 'Sencha Con 2011', url: 'senchacon-2011-now-packed-with-more-goodness'},
-
-                        {title: 'Documentation in Ext JS 4', url: 'new-ext-js-4-documentation-center'}
-
-                    ]
-
-                }
+                items: [
+                    {
+                        docked: 'top',
+                        xtype: 'titlebar',
+                        title: '宠物品种介绍'
+                    },{
+                        xtype:'varietylist'
+                    }
+                ]
             },
             {
                 title: '宠物商城',
@@ -73,7 +56,16 @@ Ext.define('cwlover.view.Main', {
                         title: '附近宠物'
                     },
                     {
-                        xtype: 'map'
+                        xtype: 'map',
+                        flex: 1,
+                        mapOptions: {
+                            zoomControl: false,
+                            panControl: false,
+                            rotateControl: false,
+                            streetViewControl: false,
+                            mapTypeControl: false,
+                            zoom: 13
+                        }
                     }
                 ]
             },

@@ -11,8 +11,8 @@ Ext.define('cwlover.store.Pet', {
             }
         },
         proxy: {
-            type: 'ajax',
-            url: 'pet.json'
+            type: 'jsonp',
+            url: 'localhost:8080/public/variety'
         }
     }
 });
