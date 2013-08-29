@@ -7,32 +7,18 @@ Ext.define('cwlover.view.Main', {
 
         items: [
             {
-                title: '品种大全',
-                iconCls: 'favorites',
-
-                useSimpleItems: true,
+                title: '附近宠物',
+                iconCls: 'maps',
 
                 items: [
                     {
-                        xtype: 'toolbar',
                         docked: 'top',
-
-                        items: [
-                            { xtype: 'spacer' },
-                            {
-                                xtype: 'searchfield',
-                                placeHolder: 'Search...',
-                                listeners: {
-                                    scope: this,
-                                    // clearicontap: this.onSearchClearIconTap,
-                                    // keyup: this.onSearchKeyUp
-                                }
-                            },
-                            { xtype: 'spacer' }
-                        ]
+                        xtype: 'titlebar',
+                        title: '附近宠物'
                     },
                     {
-                        xtype:'varietylist'
+                        xtype: 'baidumap',
+                        flex: 1
                     }
                 ]
             },
@@ -56,35 +42,16 @@ Ext.define('cwlover.view.Main', {
                 ].join("")
             },
             {
-                title: '附近宠物',
-                iconCls: 'maps',
-
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: '附近宠物'
-                    },
-                    {
-                        xtype: 'baidumap',
-                        flex: 1
-                    }
-                ]
+                xtype:'varietylist',
+                title: '宠物百科',
+                iconCls: 'favorites',
+                useSimpleItems: true,
+                variableHeights: true
             },
             {
+                xtype:'loginpanel',
                 title: '我的宠物',
-                iconCls: 'settings',
-
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: '我的宠物'
-                    },
-                    {
-                        html:["我的宠物"]
-                    }
-                ]
+                iconCls: 'settings'
             }
         ]
     }

@@ -5,9 +5,10 @@ Ext.define('cwlover.model.Variety', {
         fields: [
             'id',
             'varietyName',
-            'category',
+            'picture',
             'introduction',
-            'tips'
+            'tips',
+            'category'
         ]
     }
 });

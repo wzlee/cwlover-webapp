@@ -7,12 +7,19 @@ Ext.define('cwlover.store.Variety', {
         sorters: 'category',
         grouper: {
             groupFn: function(record) {
-                return record.get('category');
+                switch(record.get('category')){
+                    case "dog":
+                        return "**汪星人**";
+                    case "cat":
+                        return "**喵星人**";
+                    default:
+                        return "其他宠物";               
+                }
             }
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://app.hgm8.com:8080/public/variety'
+            url: 'http://localhost:8080/public/variety'
         }
     }
 });

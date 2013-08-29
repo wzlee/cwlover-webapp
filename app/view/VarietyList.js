@@ -3,25 +3,43 @@ Ext.define('cwlover.view.VarietyList', {
     xtype: 'varietylist',
 
     config: {
-        
-        variableHeights: true,
         masked: {
             xtype: 'loadmask',
             message: '努力加载中...'
         },
         store: 'Variety',
-        // grouped: true,
-        // pinHeaders: true,
+        grouped: true,
+        pinHeaders: true,
         emptyText: '<div style="margin-top: 20px; text-align: center">搜索结果为空!</div>',
         itemTpl: [
             '<div style="margin:10 20;">',
-                '<img style="float:left;" src="{introduction}" width="50" height="40"/>',
+                '<img style="float:left;margin-right:10px;" src="{picture}" width="50" height="40"/>',
                 '<div>',
-                    '<p><strong>{varietyName}</strong><br>',
-                    '{tips}',
+                    '<p><b>{varietyName}</b><br>',
+                    '{introduction}',
                     '</p>',
                 '</div>',
             '</div>'
+        ],
+        items: [
+            {
+                xtype: 'toolbar',
+                docked: 'top',
+
+                items: [
+                    { xtype: 'spacer' },
+                    {
+                        xtype: 'searchfield',
+                        placeHolder: 'Search...',
+                        listeners: {
+                            scope: this
+                            // clearicontap: this.onSearchClearIconTap,
+                            // keyup: this.onSearchKeyUp
+                        }
+                    },
+                    { xtype: 'spacer' }
+                ]
+            }
         ]
     },
     /**
@@ -33,7 +51,7 @@ Ext.define('cwlover.view.VarietyList', {
         //get the store and the value of the field
         var value = field.getValue(),
             store = this.getStore();
-
+            console.log(value);
         //first clear any current filters on the store. If there is a new value, then suppress the refresh event
         store.clearFilter(!!value);
 
@@ -64,7 +82,7 @@ Ext.define('cwlover.view.VarietyList', {
                 //loop through each of the regular expressions
                 for (i = 0; i < regexps.length; i++) {
                     var search = regexps[i],
-                        didMatch = search.test(record.get('firstName') + ' ' + record.get('lastName'));
+                        didMatch = search.test(record.get('varietyName') + ' ' + record.get('varietyName'));
 
                     //if it matched the first or last name, push it into the matches array
                     matched.push(didMatch);

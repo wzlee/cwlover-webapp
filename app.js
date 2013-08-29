@@ -31,13 +31,14 @@ Ext.application({
         'Ext.field.Search',
         'Ext.List',
         'Ext.Toolbar',
-        'Ext.Panel'
+        'Ext.Panel',
+        'Ext.device.Geolocation'
     ],
 
     models: ['Pet','Variety'],
     stores: ['Variety'],
-    views: ['Main','VarietyList','BaiduMap'],
-    controllers:['VarietyController'],
+    views: ['Main','VarietyList','BaiduMap','LoginPanel'],
+    // controllers:['VarietyController'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -62,9 +63,35 @@ Ext.application({
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('cwlover.view.Main'));
-        var map = new BMap.Map("baidumap");          // 创建地图实例  
-        var point = new BMap.Point(116.404, 39.915);  // 创建点坐标  
-        map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别 
+        // Ext.device.Geolocation.watchPosition({
+        //     frequency: 3000, // Update every 3 seconds
+        //     callback: function(position) {
+        //         console.log('Position updated!', position.coords);
+        //     },
+        //     failure: function() {
+        //         console.log('something went wrong!');
+        //     }
+        // });
+        var geo = Ext.create('Ext.util.Geolocation', {
+            autoUpdate: false,
+            listeners: {
+                locationupdate: function(geo) {
+                    // alert('New latitude: ' + geo.getLatitude());
+                    console.log('location:'+geo.getLongitude()+','+geo.getLatitude());
+                },
+                locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+                    if(bTimeout){
+                        alert('Timeout occurred.');
+                    } else {
+                        alert('Error occurred.');
+                    }
+                }
+            }
+        });
+        geo.updateLocation();
+        // var map = new BMap.Map("baidumap");          // 创建地图实例  
+        // var point = new BMap.Point(116.404, 39.915);  // 创建点坐标  
+        // map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别 
     },
 
     onUpdated: function() {
