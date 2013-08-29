@@ -7,12 +7,12 @@ Ext.define('cwlover.store.Variety', {
         sorters: 'category',
         grouper: {
             groupFn: function(record) {
-                return record.get('category')[0];
+                return record.get('category');
             }
         },
         proxy: {
             type: 'jsonp',
-            url: 'http://113.105.131.230:8080/public/variety'
+            url: 'http://app.hgm8.com:8080/public/variety'
         }
     }
 });

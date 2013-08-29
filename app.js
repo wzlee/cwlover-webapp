@@ -27,13 +27,17 @@ Ext.application({
         'Ext.TitleBar',
         'Ext.Video',
         'Ext.Map',
-        'Ext.data.proxy.JsonP'
+        'Ext.data.proxy.JsonP',
+        'Ext.field.Search',
+        'Ext.List',
+        'Ext.Toolbar',
+        'Ext.Panel'
     ],
 
     models: ['Pet','Variety'],
     stores: ['Variety'],
-    views: ['Main','VarietyList'],
-
+    views: ['Main','VarietyList','BaiduMap'],
+    controllers:['VarietyController'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -58,7 +62,9 @@ Ext.application({
 
         // Initialize the main view
         Ext.Viewport.add(Ext.create('cwlover.view.Main'));
-     
+        var map = new BMap.Map("baidumap");          // 创建地图实例  
+        var point = new BMap.Point(116.404, 39.915);  // 创建点坐标  
+        map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别 
     },
 
     onUpdated: function() {

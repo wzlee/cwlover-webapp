@@ -1,27 +1,37 @@
 Ext.define('cwlover.view.Main', {
     extend: 'Ext.tab.Panel',
     xtype: 'main',
-    requires: [
-        'Ext.Map'
-    ],
+
     config: {
         tabBarPosition: 'bottom',
 
         items: [
             {
-                xtype: 'list',
                 title: '品种大全',
                 iconCls: 'favorites',
 
-                styleHtmlContent: true,
-                scrollable: true,
+                useSimpleItems: true,
 
                 items: [
                     {
+                        xtype: 'toolbar',
                         docked: 'top',
-                        xtype: 'titlebar',
-                        title: '宠物品种介绍'
-                    },{
+
+                        items: [
+                            { xtype: 'spacer' },
+                            {
+                                xtype: 'searchfield',
+                                placeHolder: 'Search...',
+                                listeners: {
+                                    scope: this,
+                                    // clearicontap: this.onSearchClearIconTap,
+                                    // keyup: this.onSearchKeyUp
+                                }
+                            },
+                            { xtype: 'spacer' }
+                        ]
+                    },
+                    {
                         xtype:'varietylist'
                     }
                 ]
@@ -56,16 +66,8 @@ Ext.define('cwlover.view.Main', {
                         title: '附近宠物'
                     },
                     {
-                        xtype: 'map',
-                        flex: 1,
-                        mapOptions: {
-                            zoomControl: false,
-                            panControl: false,
-                            rotateControl: false,
-                            streetViewControl: false,
-                            mapTypeControl: false,
-                            zoom: 13
-                        }
+                        xtype: 'baidumap',
+                        flex: 1
                     }
                 ]
             },
