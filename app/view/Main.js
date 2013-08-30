@@ -1,6 +1,6 @@
 Ext.define('cwlover.view.Main', {
     extend: 'Ext.tab.Panel',
-    xtype: 'main',
+    xtype: 'mainview',
 
     config: {
         tabBarPosition: 'bottom',
@@ -17,8 +17,9 @@ Ext.define('cwlover.view.Main', {
                         title: '附近宠物'
                     },
                     {
-                        xtype: 'baidumap',
-                        flex: 1
+                        xtype: 'nearlist',
+                        useSimpleItems: true,
+                        variableHeights: true
                     }
                 ]
             },
@@ -49,9 +50,11 @@ Ext.define('cwlover.view.Main', {
                 variableHeights: true
             },
             {
-                xtype:'loginpanel',
+                xtype:'mypets',
                 title: '我的宠物',
-                iconCls: 'settings'
+                iconCls: 'settings',
+                useSimpleItems: true,
+                variableHeights: true
             }
         ]
     }

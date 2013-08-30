@@ -32,13 +32,14 @@ Ext.application({
         'Ext.List',
         'Ext.Toolbar',
         'Ext.Panel',
-        'Ext.device.Geolocation'
+        'Ext.device.Geolocation',
+        'Ext.data.proxy.LocalStorage'
     ],
 
-    models: ['Pet','Variety'],
-    stores: ['Variety'],
-    views: ['Main','VarietyList','BaiduMap','LoginPanel'],
-    // controllers:['VarietyController'],
+    models: ['Local','Pet','Variety'],
+    stores: ['Local','Variety'],
+    views: ['Main','LoginPanel','RegisterPanel','VarietyList','NearList','MyPets'],
+    controllers:['MainController'],
     icon: {
         '57': 'resources/icons/Icon.png',
         '72': 'resources/icons/Icon~ipad.png',
@@ -72,12 +73,12 @@ Ext.application({
         //         console.log('something went wrong!');
         //     }
         // });
+        var localstorage = Ext.data.StoreManager.lookup('localstorage');
         var geo = Ext.create('Ext.util.Geolocation', {
             autoUpdate: false,
             listeners: {
                 locationupdate: function(geo) {
-                    // alert('New latitude: ' + geo.getLatitude());
-                    console.log('location:'+geo.getLongitude()+','+geo.getLatitude());
+                    localstorage.setRecord({location:[geo.getLongitude(),geo.getLatitude()]});
                 },
                 locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
                     if(bTimeout){
